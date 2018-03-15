@@ -3,6 +3,7 @@ import sys
 import logging
 import tarfile
 from six.moves import urllib
+import json
 import tensorflow as tf
 from google.protobuf import text_format
 from object_detection.protos import string_int_label_map_pb2
@@ -66,7 +67,8 @@ def main(_):
   	eval_input_path=os.path.join(FLAGS.data_dir, 'val.record'))
 
   if FLAGS.hparams:
-  	hparams.parse_json(FLAGS.hparams)
+  	for key, val in json.loads(FLAGS.hparams).iteritems():
+      hparams.add_hparam(key, val)
   
   config_util.merge_external_params_with_configs(configs, hparams)
   # Save config inside dataset
