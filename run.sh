@@ -59,19 +59,19 @@ TRAIN_DIR="$DATA_DIR/$EXPERIMENT_ID"
 if [ $MODE == "train" ]
 then
 	# Create label map file from dataset
-	python /create_label_map.py \
+	python /python/create_label_map.py \
 		--data_dir $DATA_DIR \
 		--label_map_path $LABEL_MAP_PATH
 
 	# Create tf records from dataset
-	python /create_data_tf_record.py \
+	python /python/create_data_tf_record.py \
 		--data_dir $DATA_DIR \
 		--output_dir $DATA_DIR \
 		--label_map_path $LABEL_MAP_PATH
 
 	if [ ! -z "$HPARAMS" -a "$HPARAMS" != " " ]; then
         # Create config file
-		python /update_config.py \
+		python /python/update_config.py \
 			--architecture $ARCHITECTURE \
 			--experiment_id $EXPERIMENT_ID \
 			--label_map_path $LABEL_MAP_PATH \
@@ -79,7 +79,7 @@ then
 			--hparams $HPARAMS
 	else
 		# Create config file
-		python /update_config.py \
+		python /python/update_config.py \
 			--architecture $ARCHITECTURE \
 			--experiment_id $EXPERIMENT_ID \
 			--label_map_path $LABEL_MAP_PATH \
