@@ -61,7 +61,7 @@ def main(_):
   	arch_details['config'])
   configs = config_util.get_configs_from_pipeline_file(config_path)
   # Update paths in config
-  hparams = tf.HParams(label_map_path=FLAGS.label_map_path, 
+  hparams = tf.contrib.training.HParams(label_map_path=FLAGS.label_map_path, 
   	train_input_path=os.path.join(FLAGS.data_dir, 'train.record'),
   	eval_input_path=os.path.join(FLAGS.data_dir, 'val.record'))
 
