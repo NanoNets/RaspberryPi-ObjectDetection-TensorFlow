@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 from six.moves import urllib
 import tensorflow as tf
