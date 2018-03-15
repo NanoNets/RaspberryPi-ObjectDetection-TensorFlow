@@ -16,7 +16,7 @@ flags.DEFINE_string('label_map_path', 'data/pet_label_map.pbtxt',
 flags.DEFINE_string('data_dir', 'data/',
                     'Path to label map proto')
 flags.DEFINE_string('hparams', '',
-                    'Params in key value type split by comma')
+                    'Params in json')
 FLAGS = flags.FLAGS
 
 # Map of architecture to configs and urls
@@ -66,7 +66,7 @@ def main(_):
   	eval_input_path=os.path.join(FLAGS.data_dir, 'val.record'))
 
   if FLAGS.hparams:
-  	hparams.parse(FLAGS.hparams)
+  	hparams.parse_json(FLAGS.hparams)
   
   config_util.merge_external_params_with_configs(configs, hparams)
   # Save config inside dataset
