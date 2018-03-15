@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.4.1-gpu
+FROM tensorflow/tensorflow:1.6.0-gpu
 
 # Setup environment for tensorflow models
 RUN apt-get update && apt-get install -y \
