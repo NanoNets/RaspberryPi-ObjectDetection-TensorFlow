@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import tarfile
 from six.moves import urllib
 import tensorflow as tf
 from google.protobuf import text_format
