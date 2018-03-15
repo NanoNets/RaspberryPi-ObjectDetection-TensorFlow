@@ -61,7 +61,7 @@ RUN mkdir /bazel && \
 
 # Install tensorflow models
 WORKDIR /
-RUN git clone -b r1.4 https://github.com/tensorflow/models.git
+RUN git clone -b r1.4.0 https://github.com/tensorflow/models.git
 RUN git clone -b r1.4 https://github.com/tensorflow/tensorflow.git
 
 WORKDIR /tensorflow
