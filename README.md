@@ -2,11 +2,19 @@
 
 Script for object detection from training new model on dataset to exporting quantized graph
 
+## Setup
+Copy dataset with `images` folder containing all training images and `annotations` folder containing all respective annotations inside data folder in repo which will be mounted by docker as volume
+
 Ideally should run this script using nvidia-docker
 
 ## Docker build script
 ```
-docker build -f Dockerfile.training.gpu .
+docker build -t nanonets.docker.com/pi-od -f Dockerfile.training.gpu .
 ```
 
-## Docker run script
+## Starting training
+Tensorboard will be started at port 8000
+
+```
+sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data nanonets.docker.com/pi-od -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -p batch_size=8,learning_rate=0.003
+```
