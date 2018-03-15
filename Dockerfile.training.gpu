@@ -68,7 +68,7 @@ WORKDIR /tensorflow
 RUN bazel build tensorflow/tools/graph_transforms:transform_graph
 
 WORKDIR /models/research/
-protoc object_detection/protos/*.proto --python_out=.
+RUN protoc object_detection/protos/*.proto --python_out=.
 ENV PYTHONPATH=$PYTHONPATH:/models/research/:/models/research/slim
 RUN python object_detection/builders/model_builder_test.py
 
