@@ -126,7 +126,7 @@ def dict_to_tf_example(data,
     xmax.append(float(obj['bndbox']['xmax']) / width)
     ymax.append(float(obj['bndbox']['ymax']) / height)
     classes_text.append(obj['name'].encode('utf8'))
-    classes.append(label_map_dict[class_name])
+    classes.append(label_map_dict[obj['name']])
 
   example = tf.train.Example(features=tf.train.Features(feature={
       'image/height': dataset_util.int64_feature(height),
