@@ -26,7 +26,7 @@ CHECKPOINT_FILE="model.ckpt"
 MODE="train"
 OPTIND=1
 
-while getopts m:a:h:e:c: opt; do
+while getopts m:a:h:e:c:p: opt; do
 	case $opt in
 		m)  MODE=$OPTARG
 			;;
