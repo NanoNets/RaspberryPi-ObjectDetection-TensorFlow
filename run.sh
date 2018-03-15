@@ -91,7 +91,7 @@ then
 		--train_dir $TRAIN_DIR \
 		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
 
-	mkdir "$TRAIN_DIR/eval"
+	mkdir -p "$TRAIN_DIR/eval"
 
 	# Start eval on cpu
 	nohup CUDA_VISIBLE_DEVICES=-1 python /models/research/object_detection/eval.py \
@@ -100,7 +100,7 @@ then
 		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
 
 	# Start tensorboard at port 8000
-	nohup tensorboard --port 8000 --logdir=$TRAIN_DIR &
+	tensorboard --port 8000 --logdir=$TRAIN_DIR
 elif [ $MODE = "export" ]
 then
 	# Export last trained model in experiment
