@@ -108,7 +108,7 @@ then
 	# Export last trained model in experiment
 	python /models/research/object_detection/export_inference_graph.py \
 		--trained_checkpoint_prefix $CHECKPOINT_FILE \
-		--output_directory $TRAIN_DIR
+		--output_directory $TRAIN_DIR \
 		--pipeline_config_path "$TRAIN_DIR/pipeline.config"
 
 	/tensorflow/bazel-bin/tensorflow/tools/graph_transforms/transform_graph \
