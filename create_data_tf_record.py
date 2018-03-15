@@ -85,7 +85,7 @@ def dict_to_tf_example(data,
   Raises:
     ValueError: if the image pointed to by data['filename'] is not a valid JPEG
   """
-  img_path = os.path.join(image_subdirectory, os.path.basename(data['filename'])
+  img_path = os.path.join(image_subdirectory, os.path.basename(data['filename']))
   with tf.gfile.GFile(img_path, 'rb') as fid:
     encoded_jpg = fid.read()
   encoded_jpg_io = io.BytesIO(encoded_jpg)
