@@ -37,7 +37,6 @@ RUN pip install enum34 futures mock six matplotlib jupyter && \
     pip install -i https://testpypi.python.org/simple --pre grpcio
 
 WORKDIR /
-RUN git clone https://github.com/tensorflow/models.git
 RUN git clone -b r1.4 https://github.com/tensorflow/tensorflow.git
 
 # Set up Bazel.
@@ -65,6 +64,9 @@ RUN mkdir /bazel && \
 WORKDIR /tensorflow
 RUN tensorflow/tools/ci_build/builds/configured CPU \
 	bazel build tensorflow/tools/graph_transforms:transform_graph
+
+WORKDIR /
+RUN git clone https://github.com/tensorflow/models.git
 
 WORKDIR /models/research/
 RUN protoc object_detection/protos/*.proto --python_out=.
