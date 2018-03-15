@@ -36,6 +36,9 @@ RUN pip install enum34 futures mock six matplotlib jupyter && \
     pip install --pre 'protobuf>=3.0.0a3' && \
     pip install -i https://testpypi.python.org/simple --pre grpcio
 
+WORKDIR /
+RUN git clone -b r1.4.0 https://github.com/tensorflow/models.git
+RUN git clone -b r1.4 https://github.com/tensorflow/tensorflow.git
 
 # Set up Bazel.
 
@@ -48,7 +51,7 @@ RUN echo "startup --batch" >>/etc/bazel.bazelrc
 RUN echo "build --spawn_strategy=standalone --genrule_strategy=standalone" \
     >>/etc/bazel.bazelrc
 # Install the most recent bazel release.
-ENV BAZEL_VERSION 0.11.0
+ENV BAZEL_VERSION 0.5.4
 WORKDIR /
 RUN mkdir /bazel && \
     cd /bazel && \
@@ -59,13 +62,9 @@ RUN mkdir /bazel && \
     cd / && \
     rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
-# Install tensorflow models
-WORKDIR /
-RUN git clone -b r1.4.0 https://github.com/tensorflow/models.git
-RUN git clone -b r1.4 https://github.com/tensorflow/tensorflow.git
-
 WORKDIR /tensorflow
-RUN bazel build tensorflow/tools/graph_transforms:transform_graph
+RUN tensorflow/tools/ci_build/builds/configured GPU \
+	bazel build tensorflow/tools/graph_transforms:transform_graph
 
 WORKDIR /models/research/
 RUN protoc object_detection/protos/*.proto --python_out=.
