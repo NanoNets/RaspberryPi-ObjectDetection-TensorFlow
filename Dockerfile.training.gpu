@@ -63,7 +63,7 @@ RUN mkdir /bazel && \
     rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
 WORKDIR /tensorflow
-RUN tensorflow/tools/ci_build/builds/configured GPU \
+RUN tensorflow/tools/ci_build/builds/configured CPU \
 	bazel build tensorflow/tools/graph_transforms:transform_graph
 
 WORKDIR /models/research/
@@ -78,5 +78,6 @@ VOLUME /data
 # Add files to dockerfile
 ADD . /
 
+EXPOSE 8000
 ENTRYPOINT ["/run.sh"]
-CMD []
+CMD [""]

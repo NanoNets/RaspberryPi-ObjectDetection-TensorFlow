@@ -9,6 +9,7 @@ Do stuff with FILE and write the result to standard output. With no FILE
 or when FILE is -, read standard input.
 
 	-h          display this help and exit
+	-p          comma separated keu value pairs of hyperparemeters
 	-f OUTFILE  write the result to OUTFILE instead of standard output.
 	-v          verbose mode. Can be used multiple times for increased verbosity.
 EOF
@@ -30,11 +31,15 @@ while getopts m:a:h:e:c: opt; do
 			;;
 		a)  ARCHITECTURE=$OPTARG
 			;;
-		h)  HPARAMS=$OPTARG
+		p)  HPARAMS=$OPTARG
 			;;
 		e)  EXPERIMENT_ID=$OPTARG
 			;;
 		c)  CHECKPOINT_FILE=$OPTARG
+			;;
+		h)
+			show_help >&2
+			exit 1
 			;;
 		*)
   			show_help >&2
