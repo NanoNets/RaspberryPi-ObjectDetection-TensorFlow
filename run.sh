@@ -92,9 +92,9 @@ then
 		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
 
 	mkdir -p "$TRAIN_DIR/eval"
-
+	
 	# Start eval on cpu
-	nohup CUDA_VISIBLE_DEVICES=-1 python /models/research/object_detection/eval.py \
+	nohup env CUDA_VISIBLE_DEVICES=-1 python /models/research/object_detection/eval.py \
 		--checkpoint_dir $TRAIN_DIR \
 		--eval_dir "$TRAIN_DIR/eval" \
 		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
