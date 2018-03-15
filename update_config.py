@@ -13,11 +13,11 @@ flags = tf.app.flags
 flags.DEFINE_string('architecture', '', 'Name of architecture')
 flags.DEFINE_string('experiment_id', '', 'Id of current experiment output')
 flags.DEFINE_string('label_map_path', 'data/pet_label_map.pbtxt',
-                    'Path to label map proto')
+					'Path to label map proto')
 flags.DEFINE_string('data_dir', 'data/',
-                    'Path to label map proto')
+					'Path to label map proto')
 flags.DEFINE_string('hparams', '',
-                    'Params in json')
+					'Params in json')
 FLAGS = flags.FLAGS
 
 # Map of architecture to configs and urls
@@ -36,19 +36,19 @@ def maybe_download_and_extract(url, output_dir):
 	downloads it from the TensorFlow.org website and unpacks it into a directory.
 	"""
 	if not os.path.exists(output_dir):
-	    os.makedirs(output_dir)
+		os.makedirs(output_dir)
 	filename = url.split('/')[-1]
 	filepath = os.path.join(output_dir, filename)
 	if not os.path.exists(filepath):
-	    def _progress(count, block_size, total_size):
-	        sys.stdout.write('\r>> Downloading %s %.1f%%' %
-	                         (filename,
-	                          float(count * block_size) / float(total_size) * 100.0))
-	        sys.stdout.flush()
+		def _progress(count, block_size, total_size):
+			sys.stdout.write('\r>> Downloading %s %.1f%%' %
+							 (filename,
+							  float(count * block_size) / float(total_size) * 100.0))
+			sys.stdout.flush()
 
-	    filepath, _ = urllib.request.urlretrieve(url, filepath, _progress)
-	    statinfo = os.stat(filepath)
-	    print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
+		filepath, _ = urllib.request.urlretrieve(url, filepath, _progress)
+		statinfo = os.stat(filepath)
+		print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
 	tarfile.open(filepath, 'r:gz').extractall(output_dir)
 
 def main(_):
@@ -68,7 +68,7 @@ def main(_):
 
   if FLAGS.hparams:
   	for key, val in json.loads(FLAGS.hparams).iteritems():
-      hparams.add_hparam(key, val)
+	  hparams.add_hparam(key, val)
   
   config_util.merge_external_params_with_configs(configs, hparams)
   # Save config inside dataset
