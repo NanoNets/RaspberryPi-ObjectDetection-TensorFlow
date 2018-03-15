@@ -53,23 +53,23 @@ echo "ARCHITECTURE: $ARCHITECTURE"
 echo "EXPERIMENT ID: $EXPERIMENT_ID"
 echo "HPARAMS: $HPARAMS"
 
-TRAIN_DIR = "$DATA_DIR/$EXPERIMENT_ID"
+TRAIN_DIR="$DATA_DIR/$EXPERIMENT_ID"
 
 if [ $MODE == "train" ]
 then
 	# Create label map file from dataset
-	python create_label_map.py \
+	python /create_label_map.py \
 		--data_dir $DATA_DIR \
 		--label_map_path $LABEL_MAP_PATH
 
 	# Create tf records from dataset
-	python create_data_tf_record.py \
+	python /create_data_tf_record.py \
 		--data_dir $DATA_DIR \
 		--output_dir $DATA_DIR \
 		--label_map_path $LABEL_MAP_PATH
 
 	# Create config file
-	python update_config.py \
+	python /update_config.py \
 		--architecture $ARCHITECTURE \
 		--experiment_id $EXPERIMENT_ID \
 		--label_map_path $LABEL_MAP_PATH \
