@@ -50,7 +50,7 @@ def maybe_download_and_extract(url, output_dir):
 def main(_):
   arch_details = arch_map[FLAGS.architecture]
   # check graph type, download graph
-  graph_url = arch_map['url']
+  graph_url = arch_details['url']
   graph_path = '/models/research/object_detection/data/'
   maybe_download_and_extract(graph_url, graph_path)
   # Open config file
