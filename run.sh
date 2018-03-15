@@ -86,21 +86,23 @@ then
 			--data_dir $DATA_DIR
 	fi
 
-	# Start training
-	nohup python /models/research/object_detection/train.py \
-		--train_dir $TRAIN_DIR \
-		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
-
 	mkdir -p "$TRAIN_DIR/eval"
 	
 	# Start eval on cpu
-	nohup env CUDA_VISIBLE_DEVICES=-1 python /models/research/object_detection/eval.py \
+	nohup bash -c 'sleep 30; 
+	env CUDA_VISIBLE_DEVICES=-1 python /models/research/object_detection/eval.py \
 		--checkpoint_dir $TRAIN_DIR \
 		--eval_dir "$TRAIN_DIR/eval" \
-		--pipeline_config_path "$TRAIN_DIR/pipeline.config" &
+		--pipeline_config_path "$TRAIN_DIR/pipeline.config"' &
 
 	# Start tensorboard at port 8000
-	tensorboard --port 8000 --logdir=$TRAIN_DIR
+	nohup tensorboard --port 8000 --logdir=$TRAIN_DIR &
+
+	# Start training
+	python /models/research/object_detection/train.py \
+		--train_dir $TRAIN_DIR \
+		--pipeline_config_path "$TRAIN_DIR/pipeline.config"
+
 elif [ $MODE = "export" ]
 then
 	# Export last trained model in experiment
