@@ -37,7 +37,7 @@ RUN pip install enum34 futures mock six matplotlib jupyter && \
     pip install -i https://testpypi.python.org/simple --pre grpcio
 
 WORKDIR /
-RUN git clone -b r1.4.0 https://github.com/tensorflow/models.git
+RUN git clone -b https://github.com/tensorflow/models.git
 RUN git clone -b r1.4 https://github.com/tensorflow/tensorflow.git
 
 # Set up Bazel.
