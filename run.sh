@@ -4,14 +4,15 @@ set -e
 # Usage info
 show_help() {
 cat << EOF
-Usage: ${0##*/} [-m mode] [-a architecture] [-h hparams]...
+Usage: ${0##*/} [-m mode] [-a architecture] [-h hparams] [-e experiment_id] [-c checkpoint]
 Do stuff with FILE and write the result to standard output. With no FILE
 or when FILE is -, read standard input.
 
+	-m          mode: train or export
 	-h          display this help and exit
 	-p          comma separated keu value pairs of hyperparemeters
-	-f OUTFILE  write the result to OUTFILE instead of standard output.
-	-v          verbose mode. Can be used multiple times for increased verbosity.
+	-e			experiment id. Used as path inside data folder to run current experiment
+	-c          when mode is export, used to specify checkpoint to use for export
 EOF
 }
 
@@ -68,13 +69,22 @@ then
 		--output_dir $DATA_DIR \
 		--label_map_path $LABEL_MAP_PATH
 
-	# Create config file
-	python /update_config.py \
-		--architecture $ARCHITECTURE \
-		--experiment_id $EXPERIMENT_ID \
-		--label_map_path $LABEL_MAP_PATH \
-		--data_dir $DATA_DIR \
-		--hparams $HPARAMS
+	if [ ! -z "$HPARAMS" -a "$HPARAMS" != " " ]; then
+        # Create config file
+		python /update_config.py \
+			--architecture $ARCHITECTURE \
+			--experiment_id $EXPERIMENT_ID \
+			--label_map_path $LABEL_MAP_PATH \
+			--data_dir $DATA_DIR \
+			--hparams $HPARAMS
+	else
+		# Create config file
+		python /update_config.py \
+			--architecture $ARCHITECTURE \
+			--experiment_id $EXPERIMENT_ID \
+			--label_map_path $LABEL_MAP_PATH \
+			--data_dir $DATA_DIR
+	fi
 
 	# Start training
 	nohup python /models/research/object_detection/train.py \
