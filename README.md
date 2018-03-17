@@ -29,10 +29,11 @@ Tensorboard will be started at port 8000 and run in background
 You can specify -h parameter to get help for docker script
 
 ```
-sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data nanonets.docker.com/pi_training -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -p '{"batch_size":8,"learning_rate":0.003}'
+sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data docker.nanonets.com/pi_training -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -p '{"batch_size":8,"learning_rate":0.003}'
 ```
 
 ### Usage
+The docker instance on startup runs a script run.sh which takes the following parameters:
 ```
 run.sh [-m mode] [-a architecture] [-h help] [-e experiment_id] [-c checkpoint] [-p hyperparameters]
 ```
@@ -50,5 +51,5 @@ or when FILE is -, read standard input.
 
 ## Step 3. Exporting trained model
 ```
-sudo nvidia-docker run -v `pwd`:data:data nanonets.docker.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -c /data/0/model.ckpt-8998
+sudo nvidia-docker run -v `pwd`:data:data docker.nanonets.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -c /data/0/model.ckpt-8998
 ```
