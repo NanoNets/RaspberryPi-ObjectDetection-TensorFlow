@@ -31,6 +31,18 @@ You can specify -h parameter to get help for docker script
 ```
 sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data nanonets.docker.com/pi_training -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -p '{"batch_size":8,"learning_rate":0.003}'
 ```
+
+###Usage
+Usage: run.sh [-m mode] [-a architecture] [-h hparams] [-e experiment_id] [-c checkpoint]
+Do stuff with FILE and write the result to standard output. With no FILE
+or when FILE is -, read standard input.
+
+	-m          mode: train or export
+	-h          display this help and exit
+	-p          comma separated keu value pairs of hyperparemeters
+	-e			experiment id. Used as path inside data folder to run current experiment
+	-c          when mode is export, used to specify checkpoint to use for export
+
 ------
 
 ## Step 3. Exporting trained model
