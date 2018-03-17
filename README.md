@@ -42,7 +42,7 @@ or when FILE is -, read standard input.
 
 	-m          mode: train or export
 	-h          display this help and exit
-	-p          comma separated keu value pairs of hyperparemeters
+	-p          comma separated key value pairs of hyperparemeters
 	-e          experiment id. Used as path inside data folder to run current experiment
 	-c          when mode is export, used to specify checkpoint to use for export
 
