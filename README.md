@@ -34,7 +34,7 @@ sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data nanonets.docker.com/pi_tr
 
 ### Usage
 ```
-run.sh [-m mode] [-a architecture] [-h hparams] [-e experiment_id] [-c checkpoint]
+run.sh [-m mode] [-a architecture] [-h help] [-e experiment_id] [-c checkpoint] [-p hyperparameters]
 ```
 
 Do stuff with FILE and write the result to standard output. With no FILE
