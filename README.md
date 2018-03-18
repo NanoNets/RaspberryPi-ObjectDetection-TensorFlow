@@ -47,6 +47,26 @@ or when FILE is -, read standard input.
 	-e          experiment id. Used as path inside data folder to run current experiment
 	-c          when mode is export, used to specify checkpoint to use for export
 
+**List of Models (that can be passed to -a):**
+1. embedded_ssd_mobilenet_v1_coco
+2. faster_rcnn_inception_resnet_v2_atrous_coco
+3. faster_rcnn_inception_resnet_v2_atrous_cosine_lr_coco
+4. faster_rcnn_inception_v2_coco
+5. faster_rcnn_nas_coco
+6. faster_rcnn_resnet101_atrous_coco
+7. faster_rcnn_resnet101_coco
+8. faster_rcnn_resnet152_coco
+9. faster_rcnn_resnet50_coco
+10. mask_rcnn_inception_resnet_v2_atrous_coco
+11. mask_rcnn_inception_v2_coco
+12. mask_rcnn_resnet101_atrous_coco
+13. mask_rcnn_resnet50_atrous_coco
+14. rfcn_resnet101_coco
+15. ssd_inception_v2_coco
+16. ssd_mobilenet_v1_coco
+17. ssd_mobilenet_v1_focal_loss_coco
+
+
 ------
 
 ## Step 3. Exporting trained model
