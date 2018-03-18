@@ -5,14 +5,12 @@ set -e
 show_help() {
 cat << EOF
 Usage: ${0##*/} [-m mode] [-a architecture] [-h hparams] [-e experiment_id] [-c checkpoint]
-Do stuff with FILE and write the result to standard output. With no FILE
-or when FILE is -, read standard input.
 
-	-m          mode: train or export
 	-h          display this help and exit
-	-p          comma separated keu value pairs of hyperparemeters
+	-m          mode: should be either `train` or `export`
+	-p          key value pairs of hyperparameters as json string
 	-e			experiment id. Used as path inside data folder to run current experiment
-	-c          when mode is export, used to specify checkpoint to use for export
+	-c          applicable when mode is export, used to specify checkpoint to use for export
 EOF
 }
 

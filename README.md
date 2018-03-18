@@ -37,39 +37,36 @@ The docker instance on startup runs a script run.sh which takes the following pa
 ```
 run.sh [-m mode] [-a architecture] [-h help] [-e experiment_id] [-c checkpoint] [-p hyperparameters]
 ```
-
-Do stuff with FILE and write the result to standard output. With no FILE
-or when FILE is -, read standard input.
-
-	-m          mode: train or export
 	-h          display this help and exit
-	-p          comma separated key value pairs of hyperparemeters
-	-e          experiment id. Used as path inside data folder to run current experiment
-	-c          when mode is export, used to specify checkpoint to use for export
+	-m          mode: should be either `train` or `export`
+	-p          key value pairs of hyperparameters as json string
+	-e			experiment id. Used as path inside data folder to run current experiment
+	-c          applicable when mode is export, used to specify checkpoint to use for export
 
 **List of Models (that can be passed to -a):**
-1. embedded_ssd_mobilenet_v1_coco
-2. faster_rcnn_inception_resnet_v2_atrous_coco
-3. faster_rcnn_inception_resnet_v2_atrous_cosine_lr_coco
-4. faster_rcnn_inception_v2_coco
-5. faster_rcnn_nas_coco
-6. faster_rcnn_resnet101_atrous_coco
-7. faster_rcnn_resnet101_coco
-8. faster_rcnn_resnet152_coco
-9. faster_rcnn_resnet50_coco
-10. mask_rcnn_inception_resnet_v2_atrous_coco
-11. mask_rcnn_inception_v2_coco
-12. mask_rcnn_resnet101_atrous_coco
-13. mask_rcnn_resnet50_atrous_coco
-14. rfcn_resnet101_coco
-15. ssd_inception_v2_coco
-16. ssd_mobilenet_v1_coco
-17. ssd_mobilenet_v1_focal_loss_coco
+1. ssd_mobilenet_v1_coco
+2. ssd_inception_v2_coco
+3. faster_rcnn_inception_v2_coco
+4. faster_rcnn_resnet50_coco
+5. rfcn_resnet101_coco
+6. faster_rcnn_resnet101_coco
+7. faster_rcnn_inception_resnet_v2_atrous_coco
+8. faster_rcnn_nas
 
+**Possible hyperparameters to override from -p command in json** 
+
+| Name | Type |
+|-----------|-----------------|
+| learning_rate | float |
+| batch_size | int |
+| train_steps | int |
+| eval_steps | int |
 
 ------
 
 ## Step 3. Exporting trained model
+This command would export trained model in quantized graph that can be used for prediction. You need to specify one of the trained checkpoints from experiment directory that you want to use for prediction with -c command as follows:
+
 ```
 sudo nvidia-docker run -v `pwd`:data:data docker.nanonets.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -c /data/0/model.ckpt-8998
 ```

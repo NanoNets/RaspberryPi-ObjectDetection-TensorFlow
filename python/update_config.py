@@ -26,6 +26,41 @@ arch_map = {
 		'config': 'ssd_mobilenet_v1_coco.config',
 		'url': 'http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_2017_11_17.tar.gz',
 		'checkpoint': 'ssd_mobilenet_v1_coco_2017_11_17'
+	},
+	'ssd_inception_v2_coco': {
+		'config': 'ssd_inception_v2_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/ssd_inception_v2_coco_2017_11_17.tar.gz',
+		'checkpoint': 'ssd_inception_v2_coco_2017_11_17'
+	},
+	'faster_rcnn_inception_v2_coco': {
+		'config': 'faster_rcnn_inception_v2_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz',
+		'checkpoint': 'faster_rcnn_inception_v2_coco_2018_01_28'
+	},
+	'faster_rcnn_resnet50_coco': {
+		'config': 'faster_rcnn_resnet50_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet50_coco_2018_01_28.tar.gz',
+		'checkpoint': 'faster_rcnn_resnet50_coco_2018_01_28'
+	},
+	'rfcn_resnet101_coco': {
+		'config': 'rfcn_resnet101_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/rfcn_resnet101_coco_2018_01_28.tar.gz',
+		'checkpoint': 'rfcn_resnet101_coco_2018_01_28'
+	},
+	'faster_rcnn_resnet101_coco': {
+		'config': 'faster_rcnn_resnet101_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/faster_rcnn_resnet101_coco_2018_01_28.tar.gz',
+		'checkpoint': 'faster_rcnn_resnet101_coco_2018_01_28'
+	},
+	'faster_rcnn_inception_resnet_v2_atrous_coco': {
+		'config': 'faster_rcnn_inception_resnet_v2_atrous_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28.tar.gz',
+		'checkpoint': 'faster_rcnn_inception_resnet_v2_atrous_coco_2018_01_28'
+	},
+	'faster_rcnn_nas': {
+		'config': 'faster_rcnn_nas_coco.config',
+		'url': 'http://download.tensorflow.org/models/object_detection/faster_rcnn_nas_coco_2018_01_28.tar.gz',
+		'checkpoint': 'faster_rcnn_nas_coco_2018_01_28'
 	}
 }
 
