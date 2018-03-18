@@ -5,7 +5,7 @@ Script for object detection from training new model on dataset to exporting quan
 ## Step 1. Setup
 
 ### Using docker registry
-This is fastest way to use the repo
+This is the fastest way to use the repo
 ```
 docker pull docker.nanonets.com/pi_training
 ```
@@ -29,7 +29,7 @@ Tensorboard will be started at port 8000 and run in background
 You can specify -h parameter to get help for docker script
 
 ```
-sudo nvidia-docker run -p 8000:8000 -v `pwd`:data:data docker.nanonets.com/pi_training -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -p '{"batch_size":8,"learning_rate":0.003}'
+sudo nvidia-docker run -p 8000:8000 -v `pwd`:data docker.nanonets.com/pi_training -m train -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco_0 -p '{"batch_size":8,"learning_rate":0.003}'
 ```
 
 ### Usage
@@ -40,7 +40,7 @@ run.sh [-m mode] [-a architecture] [-h help] [-e experiment_id] [-c checkpoint] 
 	-h          display this help and exit
 	-m          mode: should be either `train` or `export`
 	-p          key value pairs of hyperparameters as json string
-	-e			experiment id. Used as path inside data folder to run current experiment
+	-e          experiment id. Used as path inside data folder to run current experiment
 	-c          applicable when mode is export, used to specify checkpoint to use for export
 
 **List of Models (that can be passed to -a):**
@@ -68,5 +68,5 @@ run.sh [-m mode] [-a architecture] [-h help] [-e experiment_id] [-c checkpoint] 
 This command would export trained model in quantized graph that can be used for prediction. You need to specify one of the trained checkpoints from experiment directory that you want to use for prediction with -c command as follows:
 
 ```
-sudo nvidia-docker run -v `pwd`:data:data docker.nanonets.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco -c /data/0/model.ckpt-8998
+sudo nvidia-docker run -v `pwd`:data docker.nanonets.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco_0 -c /data/0/model.ckpt-8998
 ```
