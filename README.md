@@ -70,3 +70,6 @@ This command would export trained model in quantized graph that can be used for 
 ```
 sudo nvidia-docker run -v `pwd`:data docker.nanonets.com/pi_training -m export -a ssd_mobilenet_v1_coco -e ssd_mobilenet_v1_coco_0 -c /data/0/model.ckpt-8998
 ```
+
+Once your done training the model and have exported it you can move this onto a client device like the Raspberry Pi.
+For details of how to use on the Raspberry Pi click see https://github.com/NanoNets/TF-OD-Pi-Test
